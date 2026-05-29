@@ -7,6 +7,7 @@ public:
         // Your code goes here
         int i=0;
         std::string newWord,l1,l2;
+        newWord.reserve(word1.length()+word2.length());
         while(i< word1.length()||i< word2.length()){
             if(i< word1.length()){
                 newWord += word1[i];
