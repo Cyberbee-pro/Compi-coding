@@ -1,33 +1,32 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 class Solution {
 public:
     void moveZeroes(std::vector<int>& nums) {
         // Your code goes here
-        int i=0,count=0;
-        while(i<nums.size()){
-            if(0==nums[i]){
+        int i=0,count=0,VecSize=0;
+        VecSize = nums.size();
+        while(i<VecSize){
+            if(0==nums[i]&& i!=VecSize){
                 count++;
-                nums[i] = nums[i+1];
-                i++;
-                if(nums[i+2]!=NULL){
-                    nums[i+1] = nums[i+2];
-                    // i+=2;
-                }
-            }else{
-                i++;
+                std::copy(nums.begin() + (i+1),nums.end(),nums.begin() +i);
+                VecSize--;
+                i=0;
+                continue;
             }
-            }
-        
-            i=nums.size();
-            --i;
-            while(count>0){
-                nums[i] = 0;
-                i--;
-                count--;
-            }
+            i++;
         }
+        i = nums.size() -1;
+        while (0<count)
+        {
+            nums[i] = 0;
+            count--;
+            i--;
+        }
+        
+    }
 };
 
 // Helper function to print vectors and check your work
