@@ -7,13 +7,11 @@ class Solution {
 public:
     std::string gcdOfStrings(std::string str1, std::string str2) {
         // Your code goes here
-        int unitLen=0,Len1=0;
+        int Len1=0;
         std::string comStr1 = str1+str2 ,comStr2 = str2+str1,gcdStr = "";
         if(comStr1 == comStr2){
             Len1 = std::gcd(str1.length(),str2.length());
-            unitLen = str1.length() / Len1;
-            unitLen = str1.length()/ unitLen;
-            gcdStr = str1.substr(0, unitLen);
+            gcdStr = str1.substr(0, Len1);
         }
 
         return gcdStr;
