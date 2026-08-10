@@ -9,27 +9,55 @@ public:
      bool canPlaceFlowers(vector<int> &flowerbed, int n)
      {
           // Your logic goes here
-          int noOf0s = 0;
+          int noOf0s = 0,rem = 0,noOfAd0s = 0;
+          vector<int> Ad0s;
           bool isAppplicable = false;
+          rem = n;
           for (int i = 0; i < flowerbed.size(); i++)
           {
                if (flowerbed[i] == 0)
                {
                     noOf0s++;
-               }
+                    if(i!= 0 && flowerbed[i] == 0 && flowerbed[i-1] == 0){
+                      noOfAd0s++;
+                    }
+               }else if(flowerbed[i] == 1 && noOfAd0s!=0){
+                      Ad0s.push_back(noOfAd0s);
+                      noOfAd0s=0;
+                }
+
           }
 
-          if (n == 1)
-          {
-               if (noOf0s >= 3)
-               {
-                    isAppplicable = true;
-               }
+
+          if(flowerbed[0] == 0 && flowerbed[1] == 0 && rem!=0 && flowerbed.size() > 1){
+            rem--;
+          }else if(flowerbed[flowerbed.size() - 1] == 0 && flowerbed[flowerbed.size() - 2] == 0 && rem!= 0 && flowerbed.size() > 1){
+            rem--;            
+          }else if(noOf0s - rem >= (rem+1)){
+            isAppplicable = true;
+            rem = 0;
           }
-          else if (noOf0s - n >= (n + 1))
-          {
-               isAppplicable = true;
+
+          if(rem == 0){
+            isAppplicable = true;
           }
+
+          // if (n == 1)
+          // {
+          //      if (noOf0s >= 3)
+          //      {
+          //           isAppplicable = true;
+          //      }
+          // }
+          // else if (noOf0s - n >= (n + 1))
+          // {
+          //   {
+            //   if(flowerbed[0] && rem>=1){
+            //
+            //   }
+            // }
+            //    isAppplicable = true;
+          //}
           return isAppplicable;
      }
 };
