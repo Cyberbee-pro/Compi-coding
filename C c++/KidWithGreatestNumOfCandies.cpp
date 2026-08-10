@@ -2,46 +2,54 @@
 #include <vector>
 #include <algorithm> // Hint: std::max_element could be useful here
 
-
-
-
-class Solution {
+class Solution
+{
 public:
-  std::vector<bool> kidsWithCandies(std::vector<int>& candies, int extraCandies) {
-    std::vector<bool> result;
+    std::vector<bool> kidsWithCandies(std::vector<int> &candies, int extraCandies)
+    {
+        std::vector<bool> result;
         int currKid = 0;
         bool flag = true;
-         for(int i = 0; i < candies.size(); i++){
+        for (int i = 0; i < candies.size(); i++)
+        {
             currKid = candies[i];
             currKid += extraCandies;
             flag = true;
-            for(int j = 0; j < candies.size(); j++){
-                if(i!=j){
-                    if(currKid < candies[j]){
+            for (int j = 0; j < candies.size(); j++)
+            {
+                if (i != j)
+                {
+                    if (currKid < candies[j] && flag == true)
+                    {
                         flag = false;
                         result.push_back(false);
                     }
                 }
             }
-            if(flag){
+            if (flag)
+            {
                 result.push_back(true);
             }
-         }
-    return result;
+        }
+        return result;
     }
 };
 
 // Helper function to print boolean vectors cleanly
-void printBoolVector(const std::vector<bool>& vec) {
+void printBoolVector(const std::vector<bool> &vec)
+{
     std::cout << "[";
-    for (size_t i = 0; i < vec.size(); ++i) {
+    for (size_t i = 0; i < vec.size(); ++i)
+    {
         std::cout << (vec[i] ? "true" : "false");
-        if (i < vec.size() - 1) std::cout << ", ";
+        if (i < vec.size() - 1)
+            std::cout << ", ";
     }
     std::cout << "]" << std::endl;
 }
 
-int main() {
+int main()
+{
     Solution solution;
 
     // Test Case 1
